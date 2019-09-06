@@ -1,18 +1,20 @@
 import hashlib
 
+from pymongo import ASCENDING
+
 from sugar_odm import MongoDBModel, Field
 from sugar_api import JSONAPIMixin
 
 
 class User(MongoDBModel, JSONAPIMixin):
 
-    __rate__ = ( 1, 'secondly' )
+    __rate__ = ( 10, 'secondly' )
 
     __acl__ = {
         'self': ['read', 'update', 'delete'],
         'administrator': ['all'],
-        #'other': ['read'],
-        'unauthorized': ['create']
+        'other': ['read'],
+        'unauthorized': ['read']
     }
 
     __get__ = {
@@ -25,8 +27,20 @@ class User(MongoDBModel, JSONAPIMixin):
         'groups': ['administrator']
     }
 
+    __index__ = [
+        {
+            'keys': [('username', ASCENDING)],
+            'options': {
+                'unique': True
+            }
+        },
+        {
+            'keys': [('username', ASCENDING), ('password', ASCENDING)]
+        }
+    ]
+
     __database__ = {
-        'name': 'vue-sugar-template'
+        'name': 'sugar-blog'
     }
 
     username = Field(required=True)
@@ -38,7 +52,7 @@ class User(MongoDBModel, JSONAPIMixin):
         del data['attributes']['password']
 
     def default_groups(self):
-        return [ 'users' ]
+        return [ 'user' ]
 
     def encrypt_password(self):
         if self.password == 'hashed-':
