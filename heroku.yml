@@ -1,0 +1,15 @@
+---
+
+setup:
+  config:
+    REDIS_URI: "redis://redistogo:d9fc984128906900bca0f0d6d087a8f0@hammerjaw.redistogo.com:11687/"
+    MONGODB_URI: "mongodb://heroku:heroku2@ds119306.mlab.com:19306/heroku_jp9lhmr5"
+    MONGODB_DB: "heroku_jp9lhmr5"
+    MONGODB_RETRY_WRITES: false
+
+build:
+  docker:
+    sanic: Dockerfile
+
+run:
+  sanic: python3 server
