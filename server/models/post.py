@@ -1,3 +1,5 @@
+import re, os
+
 from pymongo import ASCENDING
 
 from sugar_odm import MongoDBModel, Field
@@ -27,8 +29,13 @@ class Post(MongoDBModel, JSONAPIMixin):
         }
     ]
 
+    __connection__ = {
+        'host': os.getenv('MONGODB_URI', 'mongodb://localhost:27017'),
+        'retrywrites': bool(os.getenv('MONGODB_RETRY_WRITES', True))
+    }
+
     __database__ = {
-        'name': 'sugar-blog'
+        'name': os.getenv('MONGODB_DB', 'sugar-blog')
     }
 
 
@@ -36,4 +43,7 @@ class Post(MongoDBModel, JSONAPIMixin):
     owner = Field(required=True)
     slug = Field(required=True)
     title = Field(required=True)
-    content = Field(required=True)
+    content = Field(required=True, computed='format_content')
+
+    def format_content(self):
+        return re.sub('\n\n\n', '\n\n', self.content)

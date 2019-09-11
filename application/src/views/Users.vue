@@ -1,0 +1,50 @@
+<template>
+  <div>
+    <div class="ui grid container cards">
+      <user-add />
+      <user-editor v-for="user in users.models" :user="user" :key="user.id" />
+    </div>
+  </div>
+</template>
+
+<script>
+  import { HOST } from "../settings.js";
+  import { Collection } from "../../bower_components/sugar-data/lib/collection.js";
+
+  import UserAdd from "../components/UserAdd.vue";
+  import UserEditor from "../components/UserEditor.vue";
+
+  export default {
+    components: {
+      UserAdd,
+      UserEditor
+    },
+    methods: {
+      async reloadUsers() {
+        await this.users.find({
+          sort: [ "username" ]
+        });
+        for(let error of this.users.errors) {
+          this.$store.commit("addMessage", {
+            class: "error",
+            title: error.title,
+            detail: error.detail,
+            timeout: 5
+          });
+        }
+      }
+    },
+    async created() {
+      this.reloadUsers();
+    },
+    data() {
+      return {
+        users: new Collection({
+          host: HOST,
+          uri: "v1",
+          type: "users"
+        })
+      };
+    }
+  }
+</script>

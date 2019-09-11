@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="outer">
     <navigation />
     <messages />
     <router-view></router-view>
@@ -18,3 +18,8 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  div.outer
+    min-height: 100%
+</style>

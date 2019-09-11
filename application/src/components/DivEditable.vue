@@ -22,4 +22,5 @@
 <style lang="sass" scoped>
   div
     outline: none
+    color: black
 </style>

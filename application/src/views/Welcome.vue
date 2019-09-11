@@ -4,12 +4,8 @@
 </template>
 
 <script>
-  import ContentEditable from "../components/ContentEditable.vue";
-
   export default {
-    components: {
-      ContentEditable
-    }
+    
   }
 </script>
 

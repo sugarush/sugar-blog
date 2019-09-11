@@ -1,4 +1,4 @@
-import hashlib
+import hashlib, os
 
 from pymongo import ASCENDING
 
@@ -39,12 +39,22 @@ class User(MongoDBModel, JSONAPIMixin):
         }
     ]
 
-    __database__ = {
-        'name': 'sugar-blog'
+    __connection__ = {
+        'host': os.getenv('MONGODB_URI', 'mongodb://localhost:27017'),
+        'retrywrites': bool(os.getenv('MONGODB_RETRY_WRITES', True))
     }
 
-    username = Field(required=True)
-    password = Field(required=True, computed='encrypt_password')
+    __database__ = {
+        'name': os.getenv('MONGODB_DB', 'sugar-blog')
+    }
+
+    username = Field(required=True, validated='validate_username')
+    password = Field(
+        required=True,
+        computed='encrypt_password',
+        validated='validate_password',
+        validated_before_computed=True
+    )
 
     groups = Field(type=list, computed='default_groups', computed_empty=True)
 
@@ -62,3 +72,11 @@ class User(MongoDBModel, JSONAPIMixin):
             return self.password
 
         return f'hashed-{hashlib.sha256(self.password.encode()).hexdigest()}'
+
+    def validate_username(self, value):
+        if len(value) < 8:
+            raise Exception('Username cannot be less than eight characters.')
+
+    def validate_password(self, value):
+        if len(value) < 8:
+            raise Exception('Password cannot be less than eight characters.')

@@ -1,5 +1,5 @@
 <template>
-  <div class="content"></div>
+  <div class="post-rendered markdown-body"></div>
 </template>
 
 <script>
@@ -18,8 +18,8 @@
 <style lang="sass" scoped>
   @import "../../assets/color.sass"
 
-  .content
+  .post-rendered
     border-left: 2px solid $light-purple
     padding: 1rem 0rem 1rem 1rem
-    color: $purple
+    color: black
 </style>

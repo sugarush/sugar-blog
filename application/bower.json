@@ -20,6 +20,7 @@
     "lodash": "^4.17.11",
     "semantic": "^2.4.1",
     "jwt-decode": "^2.2.0",
-    "sugar-data": "sugarush/sugar-data"
+    "sugar-data": "sugarush/sugar-data",
+    "github-markdown-css": "^3.0.1"
   }
 }
