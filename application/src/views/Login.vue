@@ -1,5 +1,8 @@
 <template>
   <div class="ui two column centered grid container">
+    <div v-if="loggingIn" class="ui active inverted dimmer">
+      <div class="ui text loader">Loading</div>
+    </div>
     <div class="row">
       <h1>Login</h1>
     </div>
@@ -36,6 +39,8 @@
   export default {
     methods: {
       async login() {
+        this.loggingIn = true;
+
         await WebToken.authenticate(`${HOST}/v1/authentication`, {
           data: {
             attributes: {
@@ -44,6 +49,8 @@
             }
           }
         });
+
+        this.loggingIn = false;
 
         if(WebToken.authenticated) {
           this.$store.commit("addMessage", {
@@ -67,6 +74,7 @@
     },
     data() {
       return {
+        loggingIn: false,
         username: "",
         password: ""
       };

@@ -79,7 +79,7 @@
             slug: this.post.attributes.slug
           } });
           this.refreshPost();
-          await this.$parent.reloadPosts();
+          await this.$parent.$parent.reloadPosts();
         }
       },
       clearClick() {

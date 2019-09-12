@@ -74,6 +74,7 @@
           } });
         }
         await this.post.save();
+        console.log(this.post.errors);
         if(this.post.errors.length) {
           if(this.post.errors.length == 1) {
             let error = this.post.errors[0];
@@ -99,8 +100,8 @@
         }
         this.isEditing = false;
         this.isChanged = false;
-        this.$parent.reloadPosts();
-        this.$parent.isPosting = false;
+        this.$parent.$parent.reloadPosts();
+        this.$parent.$parent.isPosting = false;
       },
       remove() {
         this.isRemoving = !this.isRemoving;
@@ -115,7 +116,7 @@
             timeout: 5
           });
         }
-        this.$parent.reloadPosts();
+        this.$parent.$parent.reloadPosts();
       }
     },
     async created() {

@@ -1,8 +1,17 @@
 <template>
-  <div class="ui container">
-    <post-new class="new-post" />
-    <post-leaf v-for="post in posts.models" :key="post.id" :post="post" />
-  </div>
+  <promised :promise="promise">
+    <template #pending>
+      <div class="ui active inverted dimmer">
+        <div class="ui text loader">Loading</div>
+      </div>
+    </template>
+    <template #default>
+      <div class="ui container">
+        <post-new class="new-post" />
+        <post-leaf v-for="post in posts.models" :key="post.id" :post="post" />
+      </div>
+    </template>
+  </promised>
 </template>
 
 <script>
@@ -20,8 +29,8 @@
       PostLeaf
     },
     methods: {
-      async reloadPosts() {
-        await this.posts.find({
+      reloadPosts() {
+        this.promise = this.posts.find({
           sort: [ "-created" ]
         });
         for(let error of this.posts.errors) {
@@ -34,8 +43,8 @@
         }
       }
     },
-    async created() {
-      await this.reloadPosts();
+    created() {
+      this.reloadPosts();
     },
     data() {
       return {
@@ -44,7 +53,8 @@
           host: HOST,
           uri: "v1",
           type: "posts"
-        })
+        }),
+        promise: null
       };
     }
   }
@@ -56,7 +66,6 @@
   div.ui.container
     border-left: 5px solid $light-purple
     padding-left: 31px
-    color: $light-purple
 
   .new-post
     padding-top: 2.5rem

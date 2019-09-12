@@ -1,10 +1,19 @@
 <template>
-  <div>
-    <div class="ui grid container cards">
-      <user-add />
-      <user-editor v-for="user in users.models" :user="user" :key="user.id" />
-    </div>
-  </div>
+  <promised :promise="promise">
+    <template #pending>
+      <div class="ui active inverted dimmer">
+        <div class="ui text loader">Loading</div>
+      </div>
+    </template>
+    <template #default>
+      <div>
+        <div class="ui grid container cards">
+          <user-add />
+          <user-editor v-for="user in users.models" :user="user" :key="user.id" />
+        </div>
+      </div>
+    </template>
+  </promised>
 </template>
 
 <script>
@@ -35,7 +44,7 @@
       }
     },
     async created() {
-      this.reloadUsers();
+      this.promise = this.reloadUsers();
     },
     data() {
       return {
@@ -43,7 +52,8 @@
           host: HOST,
           uri: "v1",
           type: "users"
-        })
+        }),
+        promise: null
       };
     }
   }
