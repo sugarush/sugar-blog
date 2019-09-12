@@ -70,7 +70,7 @@
             timeout: 5
           });
         }
-        this.$parent.reloadUsers();
+        this.$parent.$parent.reloadUsers();
       }
     },
     created() {

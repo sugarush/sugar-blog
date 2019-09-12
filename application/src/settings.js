@@ -1,4 +1,4 @@
-let DEVELOPMENT = false;
+let DEVELOPMENT = true;
 
 export let HOST;
 

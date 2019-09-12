@@ -18,8 +18,8 @@
 <style lang="sass" scoped>
   @import "../../assets/color.sass"
 
-  .post-rendered
-    border-left: 2px solid $light-purple
+  /*.post-rendered
+    border-left: 2px solid $gray
     padding: 1rem 0rem 1rem 1rem
-    color: black
+    color: black*/
 </style>

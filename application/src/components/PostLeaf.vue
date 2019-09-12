@@ -74,7 +74,6 @@
           } });
         }
         await this.post.save();
-        console.log(this.post.errors);
         if(this.post.errors.length) {
           if(this.post.errors.length == 1) {
             let error = this.post.errors[0];
@@ -126,7 +125,12 @@
       this.owner.id = this.post.attributes.owner;
       await this.owner.load();
       for(let error of this.owner.errors) {
-        console.error(error);
+        this.$store.commit('addMessage', {
+          class: "error",
+          title: error.title,
+          detail: error.detail,
+          timeout: 5
+        });
       }
       this.currentSlug = this.post.attributes.slug;
       this.currentContent = this.post.attributes.content;
@@ -173,10 +177,10 @@
 
         color: $purple
 
-  div.editor
+  /*div.editor
     border-left: 2px solid $light-purple
     padding: 1rem 0rem 1rem 1rem
-    color: black
+    color: black*/
 
   div.row
     padding-top: 1rem

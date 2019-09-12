@@ -30,7 +30,7 @@
     },
     methods: {
       async reloadUsers() {
-        await this.users.find({
+        this.promise = this.users.find({
           sort: [ "username" ]
         });
         for(let error of this.users.errors) {
@@ -43,8 +43,8 @@
         }
       }
     },
-    async created() {
-      this.promise = this.reloadUsers();
+    created() {
+      this.reloadUsers();
     },
     data() {
       return {

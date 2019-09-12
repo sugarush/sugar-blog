@@ -35,7 +35,7 @@
             title: "Title",
             content: "Content",
             owner: WebToken.authenticated && WebToken.payload.data.id,
-            created: Date.now(),
+            created: new Date().toISOString(),
           }
         });
       },
@@ -48,8 +48,16 @@
           this.post.attributes.slug = slug(this.post.attributes.title, {
             lower: true
           });
-          this.post.attributes.created = Date.now()
+          this.post.attributes.created = new Date().toISOString();
           await this.post.save();
+          for(let error of this.post.errors) {
+              this.$store.commit('addMessage', {
+                class: "error",
+                title: error.title,
+                detail: error.detail,
+                timeout: 5
+              });
+          }
           if(this.post.errors.length) {
             if(this.post.errors.length == 1) {
               let error = this.post.errors[0];

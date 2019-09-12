@@ -78,7 +78,7 @@
             timeout: 5
           });
         }
-        this.$parent.reloadUsers();
+        this.$parent.$parent.reloadUsers();
       },
       isModified() {
         if(this.user.attributes.password) {
