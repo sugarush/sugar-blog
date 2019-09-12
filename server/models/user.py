@@ -41,7 +41,7 @@ class User(MongoDBModel, JSONAPIMixin):
 
     __connection__ = {
         'host': os.getenv('MONGODB_URI', 'mongodb://localhost:27017'),
-        'retrywrites': bool(os.getenv('MONGODB_RETRY_WRITES', True))
+        'retrywrites': False
     }
 
     __database__ = {
