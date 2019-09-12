@@ -1,5 +1,0 @@
----
-
-build:
-  docker:
-    sanic: Dockerfile
