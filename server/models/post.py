@@ -39,7 +39,7 @@ class Post(MongoDBModel, JSONAPIMixin):
     }
 
 
-    created = Field(type=int, required=True)
+    created = Field(type=str, required=True)
     owner = Field(required=True)
     slug = Field(required=True)
     title = Field(required=True)
