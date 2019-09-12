@@ -1,1 +1,1 @@
-web: cd /server && gunicorn wsgi:application --worker-class sanic.worker.GunicornWorker
+web: pwd && gunicorn wsgi:application --worker-class sanic.worker.GunicornWorker
