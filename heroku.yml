@@ -10,6 +10,3 @@ setup:
 build:
   docker:
     sanic: Dockerfile
-
-run:
-  sanic: python3 server
