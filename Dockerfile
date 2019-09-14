@@ -13,6 +13,7 @@ RUN apk update && \
   rm -rf /var/cache/apk/APKINDEX.*
 
 COPY ./server /server
+COPY ./application/dist /application/dist
 
 CMD python3 server
 
