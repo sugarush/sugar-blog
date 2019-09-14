@@ -14,6 +14,8 @@ RUN apk update && \
 
 COPY ./server /server
 
-WORKDIR /server
+CMD python3 server
 
-CMD gunicorn wsgi:application --bind 0.0.0.0:${PORT} --worker-class sanic.worker.GunicornWorker
+#WORKDIR /server
+
+#CMD gunicorn wsgi:application --bind 0.0.0.0:${PORT} --worker-class sanic.worker.GunicornWorker
