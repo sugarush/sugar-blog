@@ -3,10 +3,10 @@ import re, os
 from pymongo import ASCENDING
 
 from sugar_odm import MongoDBModel, Field
-from sugar_api import JSONAPIMixin
+from sugar_api import JSONAPIMixin, TimestampMixin
 
 
-class Post(MongoDBModel, JSONAPIMixin):
+class Post(MongoDBModel, JSONAPIMixin, TimestampMixin):
 
     __rate__ = ( 10, 'secondly' )
 
@@ -39,7 +39,7 @@ class Post(MongoDBModel, JSONAPIMixin):
     }
 
 
-    created = Field(type=str, required=True)
+    created = Field(type='timestamp', required=True)
     owner = Field(required=True)
     slug = Field(required=True)
     title = Field(required=True)
