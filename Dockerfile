@@ -1,7 +1,7 @@
 FROM alpine:edge
 
-ENV APK_TEMPORARY_PACKAGES="git g++ make python3-dev"
-ENV APK_PACKAGES="python3 py3-gunicorn"
+ENV APK_TEMPORARY_PACKAGES="git g++ make"
+ENV APK_PACKAGES="python3 py3-gunicorn python3-dev"
 
 COPY ./.requirements /.requirements
 
