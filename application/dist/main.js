@@ -1354,7 +1354,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"HOST\", function() { return HOST; });\nlet DEVELOPMENT = false;\n\nlet HOST;\n\nif(DEVELOPMENT) {\n  HOST = \"http://localhost:8001\";\n} else {\n  HOST = \"http://sugarush-blog.herokuapp.com\";\n}\n\n\n//# sourceURL=webpack:///./src/settings.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"HOST\", function() { return HOST; });\nlet DEVELOPMENT = false;\n\nlet HOST;\n\nif(DEVELOPMENT) {\n  HOST = \"http://localhost:8001\";\n} else {\n  HOST = \"https://sugarush-blog.herokuapp.com\";\n}\n\n\n//# sourceURL=webpack:///./src/settings.js?");
 
 /***/ }),
 

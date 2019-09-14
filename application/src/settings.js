@@ -1,9 +1,9 @@
-let DEVELOPMENT = true;
+let DEVELOPMENT = false;
 
 export let HOST;
 
 if(DEVELOPMENT) {
   HOST = "http://localhost:8001";
 } else {
-  HOST = "http://sugarush-blog.herokuapp.com";
+  HOST = "https://sugarush-blog.herokuapp.com";
 }
