@@ -34,8 +34,7 @@
           attributes: {
             title: "Title",
             content: "Content",
-            owner: WebToken.authenticated && WebToken.payload.data.id,
-            created: new Date().toISOString(),
+            owner: WebToken.authenticated && WebToken.payload.data.id
           }
         });
       },

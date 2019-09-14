@@ -8,6 +8,6 @@ Vue.filter("limit", function(value, limit) {
 });
 
 Vue.filter("date", function(value) {
-  let date = new Date(value);
+  let date = new Date(value * 1000);
   return date.toDateString();
 });

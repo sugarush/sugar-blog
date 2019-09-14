@@ -30,6 +30,7 @@
     },
     methods: {
       reloadPosts() {
+        this.posts.clear();
         this.promise = this.posts.find({
           sort: [ "-created" ]
         });
