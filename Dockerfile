@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:edge
 
 ENV APK_TEMPORARY_PACKAGES="git g++ make python3-dev"
 ENV APK_PACKAGES="python3 py3-gunicorn"
