@@ -1,13 +1,22 @@
-FROM archlinux/base
+FROM alpine:3.10
 
-ENV PACMAN_PACKAGES="python python-pip git base-devel"
+ENV APK_TEMPORARY_PACKAGES="git g++ make python3-dev"
+ENV APK_PACKAGES="python3 py3-gunicorn"
 
-copy ./.requirements /.requirements
+COPY ./.requirements /.requirements
 
-RUN pacman --noconfirm -Sy ${PACMAN_PACKAGES} && \
-  pip install -r /.requirements
+RUN apk update && \
+  apk add ${APK_TEMPORARY_PACKAGES} && \
+  apk add ${APK_PACKAGES} && \
+  pip3 install -r /.requirements && \
+  apk del --purge -r ${APK_TEMPORARY_PACKAGES} && \
+  rm -rf /var/cache/apk/APKINDEX.*
 
 COPY ./server /server
 COPY ./application/dist /application/dist
 
-CMD python server
+CMD python3 server
+
+#WORKDIR /server
+
+#CMD gunicorn wsgi:application --bind 0.0.0.0:${PORT} --worker-class sanic.worker.GunicornWorker
