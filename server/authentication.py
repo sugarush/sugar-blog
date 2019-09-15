@@ -33,7 +33,7 @@ class Authentication(WebToken):
         if not user:
             raise Exception('Invalid username or password.')
 
-        return {
+        ret = {
             'exp': datetime.utcnow() + timedelta(minutes=5),
             'nbf': datetime.utcnow(),
             'iat': datetime.utcnow(),
@@ -49,6 +49,8 @@ class Authentication(WebToken):
                 }
             }
         }
+        print(ret)
+        return ret
 
     @classmethod
     async def refresh(cls, token):
