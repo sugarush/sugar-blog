@@ -42,7 +42,7 @@
         this.loggingIn = true;
 
         await WebToken.authenticate(`${HOST}/v1/authentication`, {
-          data: {
+        data: {
             attributes: {
               username: this.username,
               password: this.password
