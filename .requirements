@@ -1,7 +1,7 @@
 git+https://github.com/sugarush/sugar-document@master#egg=sugar-document
 git+https://github.com/sugarush/sugar-asynctest@master#egg=sugar-asynctest
 git+https://github.com/sugarush/sugar-odm@master#egg=sugar-odm
-git+https://github.com/sugarush/sugar-api@master#egg=sugar-api
+git+https://github.com/sugarush/sugar-api@4a380fcc472a7c8a49320e49310cd7e28a9d01b5#egg=sugar-api
 
 ipython
 pyjwt
